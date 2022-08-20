@@ -27,8 +27,11 @@
   animation: fade-in 1s;
 }
 
+
+
 body {
   font-family: 'Helvetica Neue', sans-serif;
+  background-color: black;
 }
 
 .padBottom {

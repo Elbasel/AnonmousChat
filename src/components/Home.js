@@ -16,9 +16,11 @@ const Home = () => {
   return (
     <div className="Home">
       {currentView === "SignIn" ? <SignIn /> : null}
+      {console.log(currentView)}
+
       {currentView === "SignIn" ? (
         <button
-          className="SignUpLink fixed top-3 right-3 text-white bg-gray-600 p-3 rounded-3xl"
+          className="SignUpLink fixed top-3 right-3 text-colors-white bg-colors-black p-3 rounded-3xl"
           id="sign-up"
           onClick={handleSignUpClick}
         >
@@ -27,9 +29,10 @@ const Home = () => {
       ) : null}
 
       {currentView === "SignUp" ? <SignUp /> : null}
+
       {currentView === "SignUp" ? (
         <button
-          className="SignInLink fixed top-3 right-3 text-white bg-gray-600 p-3 rounded-3xl"
+          className="SignInLink fixed top-3 right-3 text-colors-white bg-colors-black p-3 rounded-3xl"
           id="sign-in"
           onClick={handleSignInClick}
         >

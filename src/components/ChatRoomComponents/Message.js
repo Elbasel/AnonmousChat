@@ -7,6 +7,7 @@ const Message = ({
   messageNumber,
   groupedMessage,
   profileImgUrl,
+  showUsername,
 }) => {
   const handleClick = (e) => {
     let messageElement = document.querySelector(
@@ -35,27 +36,34 @@ const Message = ({
 
   return (
     <div
-      className={`${username}-${messageNumber} Message w-full flex flex-col items-start gap-4`}
+      className={`${username}-${messageNumber} ${
+        showUsername ? "mt-6" : ""
+      } Message w-full flex flex-col items-start m-w-[75%] overflow break-words`}
       onClick={handleClick}
     >
+      {showUsername && (
+        <div className="showUsername pl-[90px] mb-2 text-colors-gray-700 text-xs">
+          {username}
+        </div>
+      )}
       <div className={`${username}-${messageNumber} MessageBody flex gap-2`}>
         <img
           className={`${
             groupedMessage ? "opacity-0" : ""
-          }  messageProfilePicture w-14 h-auto rounded-full border-gray-800 border-2`}
+          }  messageProfilePicture w-16 h-auto rounded-full border-gray-800 border-2`}
           src={profileImgUrl}
           alt="profilePicture"
         ></img>
         <p
-          className={`${username}-${messageNumber} Paragraph bg-colors-gray-700 rounded-3xl px-9 py-4 text-2xl text-colors-white`}
+          className={`${username}-${messageNumber} Paragraph bg-colors-gray-700 rounded-3xl p-4 text-xl text-colors-white flex items-center justify-center`}
         >
           {messageBody}
         </p>
       </div>
       <div
-        className={`${username}-${messageNumber} Time p-3 text-colors-white scale-0 hidden transition-all`}
+        className={`${username}-${messageNumber} Time py-1 pl-[90px] text-colors-white scale-0 hidden transition-all text-xs`}
       >
-        {username} at {sentAt}
+        {sentAt}
       </div>
     </div>
   );

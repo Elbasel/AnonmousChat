@@ -53,7 +53,9 @@ const SignIn = () => {
 const ErrorDiv = ({ isError, errorMsg }) => {
   if (isError) {
     return (
-      <div className="text-red-600 max-h-[16px] my-[-20px]">{errorMsg}</div>
+      <div className="text-colors-red-600 max-h-[16px] my-[-20px]">
+        {errorMsg}
+      </div>
     );
   } else {
     return null;
@@ -63,14 +65,14 @@ const ErrorDiv = ({ isError, errorMsg }) => {
 const SignInForm = ({ handleSubmit, isError, errorMsg, inputGroups }) => {
   return (
     <form
-      className="SignInForm flex flex-col p-2 text-white justify-center items-center gap-10"
+      className="SignInForm flex flex-col p-2 text-colors-white justify-center items-center gap-10"
       onSubmit={handleSubmit}
     >
       <h1 className="text-3xl mt-3 mx-auto">Sign In</h1>
       {inputGroups}
       <ErrorDiv isError={isError} errorMsg={errorMsg} />
 
-      <button className="bg-gray-800 p-9 text-4xl rounded-3xl leading-3">
+      <button className="bg-colors-blue-600 p-9 text-4xl rounded-3xl leading-3">
         Sign In
       </button>
     </form>

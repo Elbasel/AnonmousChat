@@ -24,12 +24,11 @@ function App() {
   });
 
   return (
-    <div className=" App bg-black">
-      <ChatRoom username="Zoro" />
-      {/* {currentView === "Home" ? <Home /> : null} */}
-      {/* {currentView === "ChatRoom" ? (
+    <div className=" App bg-colors-black">
+      {currentView === "Home" ? <Home /> : null}
+      {currentView === "ChatRoom" ? (
         <ChatRoom username={Parse.User.current().get("username")} />
-      ) : null} */}
+      ) : null}
     </div>
   );
 }

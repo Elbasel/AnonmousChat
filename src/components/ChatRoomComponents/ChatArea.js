@@ -19,19 +19,33 @@ const ChatArea = () => {
     <div
       className={`${
         raised ? "padBottom" : ""
-      } chatArea overflow-auto scrollbar-hide flex-1 gap-3 flex flex-col min-h-[607px] mt-[75px] max-h-20 scroll-smooth sm:min-h-[80vh]`}
+      } chatArea overflow-auto scrollbar-hide flex-1 gap-1 flex flex-col min-h-[607px] mt-[75px] max-h-20 scroll-smooth sm:min-h-[80vh] pt-2`}
     >
       {[
-        { id: "id-a", username: "elbasel" },
+        {
+          id: "id-aasaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaa aaaaaaaaaa aaaaaaaa aaaaaaaa a",
+          username: "elbasel",
+        },
         { id: "id-b", username: "elbasel" },
         { id: "id-c", username: "elbasel" },
         { id: "id-d", username: "elbasel" },
         { id: "id-e", username: "elbasel" },
+        { id: "id-f", username: "elbasel" },
+        { id: "id-g", username: "pink" },
+        { id: "id-h", username: "elbasel" },
+        { id: "id-i", username: "elbasel" },
+        { id: "id-j", username: "elbasel" },
         { id: "id-A", username: "pink" },
       ].map((msg, index, array) => {
-        let currentUser, nextUser;
+        let prevUser, currentUser, nextUser;
+        let showUsername = false;
         let profileImgUrl = "https://pbs.twimg.com/media/EZqRRpTUMAABaHI.jpg";
+
         let groupedMessage = true;
+
+        if (array[index - 1]) {
+          prevUser = array[index - 1].username;
+        }
 
         if (array[index + 1]) {
           nextUser = array[index + 1].username;
@@ -42,7 +56,10 @@ const ChatArea = () => {
         if (currentUser !== nextUser) {
           groupedMessage = false;
         }
-        // console.log(currentUser);
+
+        if (prevUser !== currentUser) {
+          showUsername = true;
+        }
 
         return (
           <Message
@@ -53,6 +70,7 @@ const ChatArea = () => {
             sentAt="10:00 pm"
             messageNumber={index}
             profileImgUrl={profileImgUrl}
+            showUsername={showUsername}
           />
         );
       })}

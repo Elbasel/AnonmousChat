@@ -58,7 +58,9 @@ const SignUp = () => {
 const ErrorDiv = ({ isError, errorMsg }) => {
   if (isError) {
     return (
-      <div className="text-red-600 max-h-[16px] my-[-20px]">{errorMsg}</div>
+      <div className="text-colors-red-600 max-h-[16px] my-[-20px]">
+        {errorMsg}
+      </div>
     );
   } else {
     return null;
@@ -68,14 +70,14 @@ const ErrorDiv = ({ isError, errorMsg }) => {
 const SignUpForm = ({ handleSubmit, isError, errorMsg, inputGroups }) => {
   return (
     <form
-      className="SignUpForm flex flex-col p-2 text-white justify-center items-center gap-10"
+      className="SignUpForm flex flex-col p-2 text-colors-white justify-center items-center gap-10"
       onSubmit={handleSubmit}
     >
       <h1 className="SignUpHeader text-3xl mt-3 mx-auto">Sign Up!</h1>
       {inputGroups}
       <ErrorDiv isError={isError} errorMsg={errorMsg} />
 
-      <button className="UserSignUp bg-gray-800 p-9 text-4xl rounded-3xl leading-3">
+      <button className="UserSignUp bg-colors-rose-700 p-9 text-4xl rounded-3xl leading-3">
         Sign Up Now!
       </button>
     </form>
