@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('http://fonts.cdnfonts.com/css/helvetica-neue-9');
+
+
+@import url("http://fonts.cdnfonts.com/css/open-sans");
+
+.SignUpForm, .SignInForm {
+    animation: fade-in 1s;
+
+}
+.SignUpHeader {
+    animation: scale-in 1s 1;
+}
+
+.UserSignUp {
+    animation: vibrate 1s infinite;
+}
+
+.raised {
+  transform: translateY(-287px);
+  animation: fade-in 2s;
+}
+
+.Time {
+  animation: fade-in 1s;
+}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.padBottom {
+  padding-bottom: 294px
+}
+
+.fade-in {
+  animation: fade-in 3s forwards;
+}
+
+
+
+
+
+html {
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  max-height: 100vh;
+  max-height: -webkit-fill-available;
+  max-height: 99%;
+  overflow: hidden;
+
+
+}
+.body {
+  max-height: 100vh;
+  max-height: -webkit-fill-available;
+  max-height: 99%;
+  overflow: hidden;
+}
+
+
+
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes vibrate {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+  
+  @keyframes scale-in {
+
+    0% {
+        transform: scale(0.7);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+    
+  }
