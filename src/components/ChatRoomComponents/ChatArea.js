@@ -19,7 +19,7 @@ const ChatArea = () => {
     <div
       className={`${
         raised ? "padBottom" : ""
-      } chatArea overflow-auto scrollbar-hide flex-1 gap-3 flex flex-col min-h-[607px] mt-[75px] max-h-20 scroll-smooth sm:w-[80vh]`}
+      } chatArea overflow-auto scrollbar-hide flex-1 gap-3 flex flex-col min-h-[607px] mt-[75px] max-h-20 scroll-smooth sm:min-h-[80vh]`}
     >
       {[
         { id: "id-a", username: "elbasel" },

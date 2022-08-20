@@ -19,10 +19,10 @@ const InputArea = () => {
     <div
       className={`${
         raised ? "raised" : ""
-      }  inputArea fade-in flex items-start justify-center p-[22px] rounded-3xl  gap-3 flex-1 bg-black shadow-2xl max-h-28] transition-all duration-300`}
+      }  inputArea fade-in flex items-start justify-center p-[22px] rounded-3xl  gap-3 flex-1 bg-colors-black shadow-2xl max-h-28] transition-all duration-300`}
     >
       <button className="">
-        <BsFillImageFill size="2rem" className="text-white" />
+        <BsFillImageFill size="2rem" className="text-colors-white z-30" />
       </button>
       <input
         id="text-input"
@@ -33,7 +33,7 @@ const InputArea = () => {
         className=" p-2 rounded-3xl flex-1"
       />
       <button className="">
-        <IoMdSend size="2rem" className="text-white" />
+        <IoMdSend size="2rem" className="text-colors-white" />
       </button>
     </div>
   );

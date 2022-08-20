@@ -9,23 +9,17 @@ const Message = ({
   profileImgUrl,
 }) => {
   const handleClick = (e) => {
-    let messageElement;
+    let messageElement = document.querySelector(
+      `.${username}-${messageNumber}`
+    );
 
-    if (e.target.classList.contains("Message")) {
-      messageElement = e.target.querySelector(":nth-child(2)");
-    }
+    let timeElement = messageElement.querySelector(
+      `.Time.${username}-${messageNumber}`
+    );
 
-    if (e.target.classList.contains("MessageBody")) {
-      messageElement = e.target.parentNode.childNodes[1];
-    }
-
-    if (e.target.classList.contains("Paragraph")) {
-      messageElement = e.target.parentNode.parentNode.childNodes[1];
-    }
-    PubSub.publish("MessagePressed", messageElement);
-
-    messageElement.classList.toggle("hidden");
-    messageElement.classList.toggle("scale-0");
+    timeElement.classList.toggle("hidden");
+    timeElement.classList.toggle("scale-0");
+    PubSub.publish("MessagePressed", timeElement);
   };
 
   PubSub.subscribe("MessagePressed", (msg, target) => {
@@ -53,13 +47,13 @@ const Message = ({
           alt="profilePicture"
         ></img>
         <p
-          className={`${username}-${messageNumber} Paragraph bg-colors-gray-700 rounded-3xl px-9 py-4 text-2xl`}
+          className={`${username}-${messageNumber} Paragraph bg-colors-gray-700 rounded-3xl px-9 py-4 text-2xl text-colors-white`}
         >
           {messageBody}
         </p>
       </div>
       <div
-        className={`${username}-${messageNumber} Time p-3 text-colors-gray-500 scale-0 hidden transition-all`}
+        className={`${username}-${messageNumber} Time p-3 text-colors-white scale-0 hidden transition-all`}
       >
         {username} at {sentAt}
       </div>
