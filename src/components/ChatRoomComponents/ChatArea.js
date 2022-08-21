@@ -23,7 +23,10 @@ const ChatArea = () => {
     setMessagesArray(array);
   });
 
+  var counter = 0;
+
   useEffect(() => {
+    console.log(`ChatRoom render number:`, counter);
     document.querySelector(".chatArea").scrollTop =
       document.querySelector(".chatArea").scrollHeight;
   });
@@ -35,9 +38,8 @@ const ChatArea = () => {
       } chatArea overflow-auto scrollbar-hide flex-1 gap-1 flex flex-col min-h-[607px] mt-[75px] max-h-20 scroll-smooth sm:min-h-[80vh] pt-2`}
     >
       {messagesArray.map((msg, index, array) => {
-        // console.log(msg);
         let profileImgUrl = msg.get("profileImgUrl");
-
+        debugger;
         let prevUser, currentUser, nextUser;
 
         let showUsername = false;

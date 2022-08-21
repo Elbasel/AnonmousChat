@@ -23,9 +23,12 @@ const SignUp = () => {
     const profileImgUrl = document.querySelector(".selected").src;
 
     try {
-      console.log(
-        document.querySelector(".ProfilePicturePicker").querySelectorAll("img")
-      );
+      // console.log(
+      //   document
+      //     .querySelector(".ProfilePicker")
+      //     .querySelector(".Images")
+      //     .querySelectorAll("img")
+      // );
       if (username.length < 3)
         throw new Error("Username must be more than 3 characters long");
       if (password.length < 6)
@@ -40,6 +43,8 @@ const SignUp = () => {
       const newUser = await user.signUp();
       PubSub.publish("new-user-created", newUser);
     } catch (error) {
+      debugger;
+
       outputError(error.message);
       console.error("Error while signing up user", { error });
     }
