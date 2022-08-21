@@ -1,7 +1,8 @@
 import Message from "./Message";
 import PubSub from "pubsub-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Parse from "parse";
+import moment from "moment-js";
 
 const ChatArea = () => {
   const [raised, setRaised] = useState(false);
@@ -17,13 +18,15 @@ const ChatArea = () => {
       document.querySelector(".chatArea").scrollHeight;
   });
 
-  const render = async () => {
-    const query = new Parse.Query("Message").ascending("createdAt");
-    const messages = await query.find();
-    setMessagesArray(messages);
-  };
+  PubSub.subscribe("messageArrayChanged", (msg, array) => {
+    console.log("arrayReceived", array);
+    setMessagesArray(array);
+  });
 
-  render();
+  useEffect(() => {
+    document.querySelector(".chatArea").scrollTop =
+      document.querySelector(".chatArea").scrollHeight;
+  });
 
   return (
     <div
@@ -32,7 +35,7 @@ const ChatArea = () => {
       } chatArea overflow-auto scrollbar-hide flex-1 gap-1 flex flex-col min-h-[607px] mt-[75px] max-h-20 scroll-smooth sm:min-h-[80vh] pt-2`}
     >
       {messagesArray.map((msg, index, array) => {
-        console.log(msg);
+        // console.log(msg);
         let profileImgUrl = msg.get("profileImgUrl");
 
         let prevUser, currentUser, nextUser;
@@ -63,7 +66,7 @@ const ChatArea = () => {
             key={msg.id}
             messageBody={msg.get("body")}
             username={msg.get("username")}
-            sentAt={msg.createdAt}
+            sentAt={msg.createdAt.toLocaleString()}
             messageNumber={index}
             profileImgUrl={profileImgUrl}
             showUsername={showUsername}

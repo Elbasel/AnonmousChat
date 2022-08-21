@@ -1,6 +1,6 @@
 const InputGroup = ({ name, isError = false }) => {
   return (
-    <div className="InputGroup p-7 bg-colors-gray-800 rounded-3xl flex items-center justify-center flex-col text-xl gap-6 max-w-[90%]">
+    <div className="InputGroup p-7 sm:p-5 bg-colors-gray-800 rounded-3xl flex items-center justify-center flex-col text-xl gap-6 max-w-[90%]">
       <label className=" font-['Open Sans'] text-3xl" htmlFor={name}>
         {name[0].toUpperCase() + name.slice(1)}
       </label>

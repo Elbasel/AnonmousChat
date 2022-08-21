@@ -1,4 +1,5 @@
 import PubSub from "pubsub-js";
+import Parse from "parse";
 
 const Message = ({
   messageBody,
@@ -36,17 +37,37 @@ const Message = ({
 
   return (
     <div
-      className={`${username}-${messageNumber} ${
-        showUsername ? "mt-6" : ""
-      } Message w-full flex flex-col items-start m-w-[75%] overflow break-words`}
+      className={`${username}-${messageNumber} ${showUsername ? "mt-6" : ""} 
+      
+
+
+      ${
+        username === Parse.User.current().get("username")
+          ? "items-end "
+          : "items-start"
+      }
+      
+      Message w-full flex flex-col m-w-[75%] overflow break-words`}
       onClick={handleClick}
     >
       {showUsername && (
-        <div className="showUsername pl-[90px] mb-2 text-colors-gray-700 text-xs">
+        <div
+          className={`showUsername ${
+            username === Parse.User.current().get("username")
+              ? "pr-[90px] "
+              : "pl-[90px]"
+          } mb-2 text-colors-white text-xs`}
+        >
           {username}
         </div>
       )}
-      <div className={`${username}-${messageNumber} MessageBody flex gap-2`}>
+      <div
+        className={`${username}-${messageNumber} MessageBody flex gap-2     ${
+          username === Parse.User.current().get("username")
+            ? "flex-row-reverse "
+            : ""
+        }`}
+      >
         <img
           className={`${
             groupedMessage ? "opacity-0" : ""
@@ -61,7 +82,11 @@ const Message = ({
         </p>
       </div>
       <div
-        className={`${username}-${messageNumber} Time py-1 pl-[90px] text-colors-white scale-0 hidden transition-all text-xs`}
+        className={`Time ${
+          username === Parse.User.current().get("username")
+            ? "pr-[90px] "
+            : "pl-[90px]"
+        } ${username}-${messageNumber}  py-3  text-colors-white scale-0 hidden transition-all text-xs`}
       >
         {sentAt}
       </div>

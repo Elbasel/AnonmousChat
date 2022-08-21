@@ -1,8 +1,9 @@
 import { IoArrowBackOutline } from "react-icons/io5";
+import Parse from "parse";
 
 const Header = ({
   username,
-  profileImageUrl = "https://pbs.twimg.com/media/EZqRRpTUMAABaHI.jpg",
+  profileImageUrl = Parse.User.current().get("profileImgUrl"),
 }) => {
   return (
     <header className="fixed z-10 flex-1 w-full p-4 flex gap-3 items-center max-h-[80px] shadow-lg bg-colors-black z-20">

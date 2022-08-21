@@ -16,10 +16,25 @@ function App() {
   Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
   Parse.serverURL = PARSE_HOST_URL;
 
-  subscribe((visibility) => {
-    if (visibility === "hidden") {
-      PubSub.publish("keyboardHidden");
-    } else PubSub.publish("keyboardShown");
+  const client = new Parse.LiveQueryClient({
+    applicationId: "2JbJXUS3TCcnQ7WO7wbROMUEc64qCkrpjG8W6Q7w",
+    serverURL: "wss://chatroom.b4a.io", // Example: 'wss://livequerytutorial.back4app.io'
+    javascriptKey: "UciG0lunmmSEJzIyuhLDn6Jl67uGsp8pDCpkyDhr",
+  });
+  client.open();
+
+  const query = new Parse.Query("Message");
+  query.ascending("createdAt");
+  const subscription = client.subscribe(query);
+
+  const render = async () => {
+    const results = await query.find();
+    PubSub.publish("messageArrayChanged", results);
+  };
+  render();
+
+  subscription.on("create", (msg) => {
+    render();
   });
 
   PubSub.subscribe("user-logged-in", (msg, user) => {
@@ -28,7 +43,12 @@ function App() {
 
   PubSub.subscribe("new-user-created", (msg, user) => {
     setCurrentView("ChatRoom");
-    console.dir(Parse.User.current());
+  });
+
+  subscribe((visibility) => {
+    if (visibility === "hidden") {
+      PubSub.publish("keyboardHidden");
+    } else PubSub.publish("keyboardShown");
   });
 
   return (
