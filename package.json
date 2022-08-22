@@ -1,6 +1,7 @@
 {
   "name": "@elbasel/anonymous-chat",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@dicebear/avatars": "^4.10.3",
