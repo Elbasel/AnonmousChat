@@ -23,10 +23,7 @@ const ChatArea = () => {
     setMessagesArray(array);
   });
 
-  var counter = 0;
-
   useEffect(() => {
-    console.log(`ChatRoom render number:`, counter);
     document.querySelector(".chatArea").scrollTop =
       document.querySelector(".chatArea").scrollHeight;
   });
@@ -34,8 +31,8 @@ const ChatArea = () => {
   return (
     <div
       className={`${
-        raised ? "min-h-[308px]" : ""
-      } chatArea overflow-auto scrollbar-hide flex-1 gap-1 flex flex-col min-h-[607px] mt-[75px] max-h-20 scroll-smooth sm:min-h-[80vh] pt-2`}
+        raised ? "min-h-[308px]" : "min-h-[607px]"
+      } chatArea overflow-auto scrollbar-hide flex-1 gap-1 flex flex-col sm:min-h-[80vh] mt-[75px] max-h-20 scroll-smooth  pt-2`}
     >
       {messagesArray.map((msg, index, array) => {
         let profileImgUrl = msg.get("profileImgUrl");
