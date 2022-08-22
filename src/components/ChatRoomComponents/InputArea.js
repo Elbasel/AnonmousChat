@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BsFillImageFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import PubSub from "pubsub-js";
+import Parse from "parse";
 
 const InputArea = () => {
   const [raised, setRaised] = useState(false);
@@ -14,9 +15,41 @@ const InputArea = () => {
     setRaised(true);
   });
 
+  const sendThenPublish = () => {
+    sendMsg()
+      .then(PubSub.publish("new-msg-sent"))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendThenPublish();
+  };
+
+  const handleClick = () => {
+    sendThenPublish();
+  };
+
+  const sendMsg = async () => {
+    const msgBody = document.querySelector("#text-input").value;
+    if (msgBody.length < 1) throw new Error("empty msg");
+    document.querySelector("#text-input").value = "";
+    const parseObject = new Parse.Object.extend("Message");
+    const msgObject = new parseObject();
+    msgObject.set("body", msgBody);
+    msgObject.set("username", Parse.User.current().get("username"));
+    msgObject.set("profileImgUrl", Parse.User.current().get("profileImgUrl"));
+    const newMsg = await msgObject.save();
+    console.log("msg sent:", newMsg);
+    return;
+  };
+
   return (
     // mt-[29px]
-    <div
+    <form
+      onSubmit={handleSubmit}
       className={`${
         raised ? "raised" : ""
       }  inputArea fade-in flex items-start justify-center p-[22px] rounded-3xl  gap-3 flex-1 bg-colors-black shadow-2xl max-h-28] transition-all duration-300`}
@@ -32,10 +65,10 @@ const InputArea = () => {
         autoComplete="off"
         className=" p-2 rounded-3xl flex-1"
       />
-      <button className="">
+      <button className="" onClick={handleClick}>
         <IoMdSend size="2rem" className="text-colors-white" />
       </button>
-    </div>
+    </form>
   );
 };
 

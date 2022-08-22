@@ -4,6 +4,7 @@ import PubSub from "pubsub-js";
 import ChatRoom from "./components/ChatRoom";
 import Parse from "parse";
 import { subscribe } from "on-screen-keyboard-detector";
+import SignIn from "./components/SignIn";
 
 function App() {
   const [currentView, setCurrentView] = useState("Home");
@@ -66,18 +67,33 @@ function App() {
     setCurrentView("ChatRoom");
   });
 
+  PubSub.subscribe("logout-requested", () => {
+    console.log("logging out");
+    window.location.reload();
+  });
+
   subscribe((visibility) => {
     if (visibility === "hidden") {
       PubSub.publish("keyboardHidden");
     } else PubSub.publish("keyboardShown");
   });
 
+  // if (Parse.User.current()) {
+  //   setCurrentView("ChatRoom");
+  // }
+
   return (
-    <div className=" App bg-colors-black">
-      {currentView === "Home" ? <Home /> : null}
-      {currentView === "ChatRoom" ? (
+    <div>
+      {Parse.User.current() ? (
         <ChatRoom username={Parse.User.current().get("username")} />
-      ) : null}
+      ) : (
+        <div className=" App bg-colors-black">
+          {currentView === "Home" ? <Home /> : null}
+          {currentView === "ChatRoom" ? (
+            <ChatRoom username={Parse.User.current().get("username")} />
+          ) : null}
+        </div>
+      )}
     </div>
   );
 }

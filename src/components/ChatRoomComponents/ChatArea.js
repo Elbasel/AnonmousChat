@@ -39,7 +39,6 @@ const ChatArea = () => {
     >
       {messagesArray.map((msg, index, array) => {
         let profileImgUrl = msg.get("profileImgUrl");
-        debugger;
         let prevUser, currentUser, nextUser;
 
         let showUsername = false;

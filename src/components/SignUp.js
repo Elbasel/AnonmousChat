@@ -9,7 +9,6 @@ import PicturePicker from "./PicturePicker";
 const SignUp = () => {
   const [currentView, setCurrentView] = useState("SignUpForm");
   const [error, setError] = useState({ isError: false, errorMsg: "no error" });
-
   const outputError = (errorMsg) => {
     setCurrentView("SignUpForm");
     setError({ isError: true, errorMsg: errorMsg });
@@ -23,12 +22,6 @@ const SignUp = () => {
     const profileImgUrl = document.querySelector(".selected").src;
 
     try {
-      // console.log(
-      //   document
-      //     .querySelector(".ProfilePicker")
-      //     .querySelector(".Images")
-      //     .querySelectorAll("img")
-      // );
       if (username.length < 3)
         throw new Error("Username must be more than 3 characters long");
       if (password.length < 6)
@@ -43,7 +36,7 @@ const SignUp = () => {
       const newUser = await user.signUp();
       PubSub.publish("new-user-created", newUser);
     } catch (error) {
-      debugger;
+      // debugger;
 
       outputError(error.message);
       console.error("Error while signing up user", { error });
@@ -80,6 +73,11 @@ const ErrorDiv = ({ isError, errorMsg }) => {
 };
 
 const SignUpForm = ({ handleSubmit, isError, errorMsg, inputGroups }) => {
+  const [profileImgUrl, setProfileImgUrl] = useState("");
+  PubSub.subscribe("new-profile-image-added", (msg, { profileImage }) => {
+    setProfileImgUrl(profileImage.get("url"));
+  });
+
   return (
     <form
       className="SignUpForm flex flex-col p-2 text-colors-white justify-center items-center gap-10 sm:gap-2"
@@ -87,7 +85,7 @@ const SignUpForm = ({ handleSubmit, isError, errorMsg, inputGroups }) => {
     >
       <h1 className="SignUpHeader text-3xl mt-3 mx-auto">Sign Up!</h1>
       {inputGroups}
-      <PicturePicker />
+      <PicturePicker profileImgUrl={profileImgUrl} />
       <ErrorDiv isError={isError} errorMsg={errorMsg} />
 
       <button className="UserSignUp bg-colors-rose-700 p-9 text-4xl rounded-3xl leading-3">
