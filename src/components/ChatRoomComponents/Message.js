@@ -37,7 +37,7 @@ const Message = ({
 
   return (
     <div
-      className={`${username}-${messageNumber} ${showUsername ? "mt-6" : ""} 
+      className={` ${username}-${messageNumber} ${showUsername ? "mt-6" : ""} 
       
 
 
@@ -71,12 +71,12 @@ const Message = ({
         <img
           className={`${
             groupedMessage ? "opacity-0" : ""
-          }  messageProfilePicture w-16 h-auto rounded-full border-gray-800 border-2`}
+          }  messageProfilePicture w-[50px] h-[50px]  rounded-full border-gray-800 border-2 `}
           src={profileImgUrl}
           alt="profilePicture"
         ></img>
         <p
-          className={`${username}-${messageNumber} Paragraph bg-colors-gray-700 rounded-3xl p-4 text-xl text-colors-white flex items-center justify-center`}
+          className={`fade-in ${username}-${messageNumber} Paragraph bg-colors-gray-700 rounded-3xl p-4 text-xl text-colors-white flex items-center justify-center`}
         >
           {messageBody}
         </p>

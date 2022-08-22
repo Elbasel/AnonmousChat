@@ -1,6 +1,5 @@
 import { useState } from "react";
 import PubSub from "pubsub-js";
-import { AiOutlinePlus } from "react-icons/ai";
 import Parse from "parse";
 
 const urls = [
