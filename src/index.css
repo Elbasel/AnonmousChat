@@ -18,10 +18,14 @@
     animation: vibrate 1s infinite;
 }
 
-.raised {
+/* .raised {
   transform: translateY(-287px);
   animation: fade-in 2s;
-}
+} */
+
+
+
+
 
 .Time {
   animation: fade-in 1s;

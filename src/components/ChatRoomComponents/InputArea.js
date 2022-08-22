@@ -51,8 +51,8 @@ const InputArea = () => {
     <form
       onSubmit={handleSubmit}
       className={`${
-        raised ? "raised" : ""
-      }  inputArea fade-in flex items-start justify-center p-[22px] rounded-3xl  gap-3 flex-1 bg-colors-black shadow-2xl max-h-28] transition-all duration-300`}
+        raised ? "" : ""
+      }  inputArea fade-in flex items-start justify-center p-[22px] rounded-3xl  gap-3 flex-1 bg-colors-black shadow-2xl max-h-[100px]`}
     >
       <button className="">
         <BsFillImageFill size="2rem" className="text-colors-white z-30" />
@@ -63,7 +63,7 @@ const InputArea = () => {
         // onBlur={handleBlur}
         type="text"
         autoComplete="off"
-        className=" p-2 rounded-3xl flex-1"
+        className=" p-2 rounded-3xl flex-1 "
       />
       <button className="" onClick={handleClick}>
         <IoMdSend size="2rem" className="text-colors-white" />
