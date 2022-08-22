@@ -19,7 +19,6 @@ const ChatArea = () => {
   });
 
   PubSub.subscribe("messageArrayChanged", (msg, array) => {
-    console.log("arrayReceived", array);
     setMessagesArray(array);
   });
 

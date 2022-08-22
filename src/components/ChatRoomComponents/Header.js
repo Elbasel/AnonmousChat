@@ -18,7 +18,6 @@ const Header = ({
     name = name.trim().replace(" ", "");
     name = name.replace("(", "");
     name = name.replace(")", "");
-    console.log(name);
     var parseFile = new Parse.File(name, file);
 
     parseFile.save().then(
@@ -47,6 +46,7 @@ const Header = ({
   PubSub.subscribe("new-profile-image-added", (msg, { profileImage }) => {
     document.querySelector(".profilePicture").src = profileImage.get("url");
     Parse.User.current().set("profileImgUrl", profileImage.get("url"));
+    Parse.User.current().save();
   });
 
   return (
@@ -66,7 +66,7 @@ const Header = ({
         <IoArrowBackOutline className="text-colors-white" size="2rem" />
       </button>
       <img
-        className="profilePicture w-14 rounded-full border-colors-gray-800 border-2"
+        className="profilePicture w-[52px] h-[52px] rounded-full border-colors-gray-800 border-2"
         src={profileImageUrl}
         alt="profilePicture"
         onClick={handleClick}

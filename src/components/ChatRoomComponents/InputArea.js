@@ -42,7 +42,6 @@ const InputArea = () => {
     msgObject.set("username", Parse.User.current().get("username"));
     msgObject.set("profileImgUrl", Parse.User.current().get("profileImgUrl"));
     const newMsg = await msgObject.save();
-    console.log("msg sent:", newMsg);
     return;
   };
 

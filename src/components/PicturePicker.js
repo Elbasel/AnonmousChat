@@ -20,9 +20,9 @@ const saveImgMessage = async (fileObject) => {
   var ProfileImg = Parse.Object.extend("ProfileImg");
   var profileImage = new ProfileImg();
   profileImage.set("url", fileObject.url());
-  profileImage.set("username", Parse.User.current().get("username"));
-  profileImage.set("profileImgUrl", Parse.User.current().get("profileImgUrl"));
-  profileImage.set("userId", Parse.User.current().id);
+  // profileImage.set("username", Parse.User.current().get("username"));
+  // profileImage.set("profileImgUrl", Parse.User.current().get("profileImgUrl"));
+  // profileImage.set("userId", Parse.User.current().id);
   profileImage.save();
   PubSub.publish("new-profile-image-added", { profileImage });
 };
@@ -42,7 +42,6 @@ const handleOnChange = (e) => {
   name = name.trim().replace(" ", "");
   name = name.replace("(", "");
   name = name.replace(")", "");
-  console.log(name);
   var parseFile = new Parse.File(name, file);
 
   parseFile.save().then(

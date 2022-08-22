@@ -54,8 +54,8 @@ const Message = ({
         <div
           className={`showUsername ${
             username === Parse.User.current().get("username")
-              ? "pr-[90px] "
-              : "pl-[90px]"
+              ? "pr-[66px] "
+              : "pl-[66px]"
           } mb-2 text-colors-white text-xs`}
         >
           {username}

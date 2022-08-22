@@ -32,15 +32,9 @@ function App() {
     render();
   });
 
-  var counter = 0;
-
   const getResults = async () => {
     const query = new Parse.Query("Message").ascending();
     const results = await query.find();
-    console.log("call number:", counter);
-    console.log("fetched", results);
-    counter++;
-    console.log("PubSub.publish('messageArrayChanged', results)");
 
     PubSub.publish("messageArrayChanged", results);
 
@@ -48,14 +42,12 @@ function App() {
   };
 
   const render = async () => {
-    console.log('PubSub.publish("messagesRequested")');
     PubSub.publish("messagesRequested");
   };
 
   render();
 
   PubSub.subscribe("messagesRequested", () => {
-    console.log("getResults()");
     getResults();
   });
 
@@ -68,7 +60,6 @@ function App() {
   });
 
   PubSub.subscribe("logout-requested", () => {
-    console.log("logging out");
     window.location.reload();
   });
 
