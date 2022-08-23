@@ -46,12 +46,12 @@ const InputArea = () => {
   };
 
   return (
-    // mt-[29px]
+    // mt-[29px] p-[22px]
     <form
       onSubmit={handleSubmit}
       className={`${
         raised ? "" : ""
-      }  inputArea fade-in flex items-start justify-center p-[22px] rounded-3xl  gap-3 flex-1 bg-colors-black shadow-2xl max-h-[100px]`}
+      }  inputArea fade-in flex items-start justify-center rounded-3xl gap-3 flex-1 bg-colors-black shadow-2xl max-h-[52px] p-[16px]`}
     >
       <button className="">
         <BsFillImageFill size="2rem" className="text-colors-white z-30" />

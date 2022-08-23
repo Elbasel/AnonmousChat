@@ -16,7 +16,6 @@ const Home = () => {
   return (
     <div className="Home">
       {currentView === "SignIn" ? <SignIn /> : null}
-      {console.log(currentView)}
 
       {currentView === "SignIn" ? (
         <button

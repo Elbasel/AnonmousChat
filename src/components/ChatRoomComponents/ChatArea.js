@@ -30,7 +30,7 @@ const ChatArea = () => {
   return (
     <div
       className={`${
-        raised ? "min-h-[308px]" : "min-h-[607px]"
+        raised ? "min-h-[317px]" : "min-h-[631px]"
       } chatArea overflow-auto scrollbar-hide flex-1 gap-1 flex flex-col sm:min-h-[80vh] mt-[75px] max-h-20 scroll-smooth  pt-2`}
     >
       {messagesArray.map((msg, index, array) => {
